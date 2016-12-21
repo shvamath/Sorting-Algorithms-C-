@@ -1,0 +1,5 @@
+c:\users\matthew\documents\visual studio 2015\Projects\SortAlgorithms\SortAlgorithms\bin\Debug\SortAlgorithms.dll
+c:\users\matthew\documents\visual studio 2015\Projects\SortAlgorithms\SortAlgorithms\bin\Debug\SortAlgorithms.pdb
+c:\users\matthew\documents\visual studio 2015\Projects\SortAlgorithms\SortAlgorithms\obj\Debug\SortAlgorithms.csprojResolveAssemblyReference.cache
+c:\users\matthew\documents\visual studio 2015\Projects\SortAlgorithms\SortAlgorithms\obj\Debug\SortAlgorithms.dll
+c:\users\matthew\documents\visual studio 2015\Projects\SortAlgorithms\SortAlgorithms\obj\Debug\SortAlgorithms.pdb
