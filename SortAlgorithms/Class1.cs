@@ -69,14 +69,82 @@ namespace SortAlgorithms
         }
         public static void MergeSort(double[] ar, int Lborder, int Rborder)
         {
+
         }
         public static void MergeSort(int[] ar, int Lborder, int Rborder)
         {
+
         }
-        public static int BinarySearch(double[] ar)
+        public static void InsertionSort(int[] ar)
+        {
+            int i, j, c;
+            for (i=1; i<ar.Length; i++)
+            {
+                c = ar[i];
+                j = i - 1;
+                while (j >= 0 && ar[j] > c)
+                {
+                    ar[j + 1] = ar[j];
+                    j--;
+                }
+                ar[j + 1] = c;
+            }
+        }
+        public static void BinaryInsertionSort(int[] ar)
+        {
+            int i, j, left, right, m, x;
+            for (i = 1; i < ar.Length; i++)
+                if (ar[i - 1] > ar[i])
+                {
+                    x = ar[i];
+                    left = 0;
+                    right = i - 1;
+                    do
+                    {
+                        m = (left + right) / 2;
+                        if (ar[m] < x) left = m + 1;
+                        else right = m - 1;
+                    }
+                    while (left <= right);
+                    for (j = i - 1; j > -left; j--) ar[j + 1] = ar[j];
+                    ar[left] = x;
+                }
+        }
+        //
+        public static void ShellSort(int[] ar)
+        {
+            int step, i, j, c;
+            step = ar.Length;
+            do
+            {
+                step = step / 3 + 1; //calculating new step
+                for (i = step; i < ar.Length; i++)
+                {
+                    c = ar[i];
+                    j = i - step;
+                    while (j >= 0 && ar[j] > c)
+                    {
+                        ar[j + step] = ar[j];
+                        j = j - step;
+                    }
+                    ar[j + step] = c;
+                }
+            }
+            while (step != 1);
+        }
+        public static int BinarySearch(int[] ar, int search_key)
         {
             int l, m, h;
             l = 0;
+            h = ar.Length-1;
+            while (l < h)
+            {
+                m = (l + h) / 2;
+                if (ar[m] < search_key) l = m + 1;
+                else h = m;
+            }
+            if (ar[l] == search_key) return l;
+            else return -1; 
         }
     }
 }
