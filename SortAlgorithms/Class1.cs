@@ -8,6 +8,7 @@ namespace SortAlgorithms
 {
     public class Class1
     {
+        //Sorts with Overloads:
         public static void QuickSort(double[] ar, int Lborder, int Rborder)
         {
             double temp;
@@ -89,6 +90,7 @@ namespace SortAlgorithms
             }
             return merged;
         }
+        //Sorts without Overloads, working only with integers
         public static void InsertionSort(int[] ar)
         {
             int i, j, c;
@@ -145,11 +147,54 @@ namespace SortAlgorithms
             }
             while (step != 1);
         }
+        public static int[] CountSort (int[] ar)
+        {
+            int max = ar.Max();
+            int length = ar.Length;
+            int[] temp = new int[max];
+            int[] rez = new int[length];
+            for (int i = 0; i < max; i++)
+                temp[i] = 0;
+            for (int i = 0; i < length; i++)
+                temp[ar[i]]++;
+            for (int j = 1; j < max; j++)
+                temp[j] = temp[j] + temp[j - 1];
+            for (int i=length-1;i>=0;i--)
+            {
+                temp[ar[i]] = temp[ar[i]] - 1;
+                rez[temp[ar[i]]] = ar[i];
+            }
+            return rez;
+        }
+        public static void BucketSort(int[] ar)
+        {
+            int min = ar[0]; int max = ar[0];
+            //search for min and max values in array
+            for (int i=1;i< ar.Length; i++)
+            {
+                if (ar[i] > max) max = ar[i];
+                if (ar[i] < min) min = ar[i];
+            }
+            List<int>[] bucket = new List<int>[max - min + 1];
+            for (int i = 0; i < bucket.Length; i++)
+                bucket[i] = new List<int>();
+            for (int i = 0; i < ar.Length; i++)
+                bucket[ar[i] - min].Add(ar[i]);
+            int k = 0;
+            for (int i=0;i<bucket.Length;i++)
+                if (bucket[i].Count>0)
+                    for (int j=0;j<bucket[i].Count;j++)
+                    {
+                        ar[k] = bucket[i][j];
+                        k++;
+                    }
+        }
+        //Binary Search Algorithm, to find an element in sorted array
         public static int BinarySearch(int[] ar, int search_key)
         {
             int l, m, h;
             l = 0;
-            h = ar.Length-1;
+            h = ar.Length - 1;
             while (l < h)
             {
                 m = (l + h) / 2;
@@ -157,12 +202,7 @@ namespace SortAlgorithms
                 else h = m;
             }
             if (ar[l] == search_key) return l;
-            else return -1; 
+            else return -1;
         }
-        public static void CountingSort(int[] ar)
-        {
-
-        }
-        public static void BucketSort()
     }
 }
