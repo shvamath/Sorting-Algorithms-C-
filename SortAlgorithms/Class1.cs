@@ -67,13 +67,27 @@ namespace SortAlgorithms
                         ar[j - 1] = temp;
                     }
         }
-        public static void MergeSort(double[] ar, int Lborder, int Rborder)
+        public static int[] MergeSort(int[] ar)
         {
-
+            if (ar.Length == 1) return ar;
+            int mid =ar.Length / 2;
+            return Merge(MergeSort(ar.Take(mid).ToArray()),
+                   MergeSort(ar.Skip(mid).ToArray()));
         }
-        public static void MergeSort(int[] ar, int Lborder, int Rborder)
+        private static int[] Merge (int[] ar1, int[] ar2)
         {
-
+            int a = 0, b = 0;
+            int[] merged = new int[ar1.Length + ar2.Length];
+            for (int i = 0; i<merged.Length; i++)
+            {
+                if (b < ar2.Length && a < ar1.Length)
+                    if (ar1[a] > ar2[b]) merged[i] = ar2[b++];
+                    else merged[i] = ar1[a++];
+                else
+                    if (b < ar1.Length) merged[i] = ar2[b++];
+                    else merged[i] = ar1[a++];   
+            }
+            return merged;
         }
         public static void InsertionSort(int[] ar)
         {
@@ -110,7 +124,6 @@ namespace SortAlgorithms
                     ar[left] = x;
                 }
         }
-        //
         public static void ShellSort(int[] ar)
         {
             int step, i, j, c;
@@ -146,5 +159,10 @@ namespace SortAlgorithms
             if (ar[l] == search_key) return l;
             else return -1; 
         }
+        public static void CountingSort(int[] ar)
+        {
+
+        }
+        public static void BucketSort()
     }
 }
